@@ -25,7 +25,7 @@ WORKDIR /usr/share/nginx/html/
 RUN unzip ./Z-BlogPHP.zip
 
 #install php
-RUN yum install zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel libxslt-devel libmcrypt-devel mhash mhash-devel mcrypt openssl-devel  -y
+RUN yum install zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel libxslt-devel libmcrypt-devel mhash mhash-devel mcrypt openssl-devel gcc -y
 ADD libiconv-1.14.tar.gz /application
 ADD php-5.3.27.tar.gz /application
 WORKDIR /application/libiconv-1.14
