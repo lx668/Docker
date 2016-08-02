@@ -1,6 +1,6 @@
 # 编写一个dockerfile运行sshd 和 lnmp服务,并启动一个博客zblog
+```
 # vim dockfile
-
 # vsersion 0.1
 # author: lx
 # Base images
@@ -25,7 +25,6 @@ WORKDIR /usr/share/nginx/html/
 RUN unzip ./Z-BlogPHP.zip
 
 #install php
-```
 RUN yum install zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel libxslt-devel libmcrypt-devel mhash mhash-devel mcrypt openssl-devel gcc -y
 ADD libiconv-1.14.tar.gz /application
 ADD php-5.3.27.tar.gz /application
@@ -34,9 +33,8 @@ RUN ./configure --prefix=/usr/local/libiconv && make && make install
 WORKDIR /application/php-5.3.27
 RUN ./configure --prefix=/application/php5.3.27 --with-mysql=/var/lib/mysql --with-iconv-dir=/usr/local/libiconv --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-safe-mode --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --with-curlwrappers --enable-mbregex --enable-fpm --enable-mbstring --with-mcrypt --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --enable-short-tags --enable-zend-multibyte --enable-static --with-xsl --with-fpm-user=nginx --with-fpm-group=nginx --enable-ftp
 RUN ln -s /application/php5.3.27/ /application/php
-```
+
 #Outside Port
-```
 EXPOSE 80 22 3306
 
 #supervisor start
