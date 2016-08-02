@@ -1,5 +1,4 @@
 # 编写一个dockerfile运行sshd 和 lnmp服务,并启动一个博客zblog
-```
 # vim dockfile
 # vsersion 0.1
 # author: lx
@@ -71,4 +70,3 @@ process_name=%(program_name)s
 autostart=true
 stdout_logfile_maxbytes=100MB
 studout_logfile_backups=10
-```
