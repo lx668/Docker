@@ -67,8 +67,49 @@ docker-compose up -d
 4.Bring up WordPress in a web browser
 If you’re using Docker Machine, then docker-machine ip MACHINE_VM gives you the machine address and you can open http://MACHINE_VM_IP in a browser
 
+how to use https,the step is example:
+1.编写docker-compose.yaml
+version: '2'
 
-参考网址:
+services:
+
+  wordpress:
+    image: wordpress
+    volumes:
+      - /www:/var/www/html
+      - /conf:/etc/apache2/sites-available
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      WORDPRESS_DB_PASSWORD: wecash2015!!!
+
+  mysql:
+    image: mariadb
+    volumes:
+      - /data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wecash2015!!!
+
+2.进入容器
+docker exec -it a0c97e1f787c /bin/bash
+cd /etc/apache2/sites-available
+sz 000-default.conf default-ssl.conf
+退出容器，上传证书和apache2配置文件
+cd /conf
+rz 000-default.conf default-ssl.conf wildcard.crt wildcard.key
+
+3.修改default-ssl.conf配置文件，新增下面两行
+ 34                 SSLCertificateFile      /etc/apache2/sites-available/wildcard.cascrt
+ 35                 SSLCertificateKeyFile /etc/apache2/sites-available/wildcard.key
+
+4.如果docker-compose已经是运行状态，请执行下面命令,如果不是运行状态只需要启动即可(docker-compose up -d)
+docker-compose down
+docker-compose up -d
+
+
+
+ 
 https://docs.docker.com/compose/install/
 https://docs.docker.com/compose/wordpress/#define-the-project
 http://www.jianshu.com/p/ae047991d40b
