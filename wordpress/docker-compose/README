@@ -51,14 +51,14 @@ services:
     ports:
       - 80:80
     environment:
-      WORDPRESS_DB_PASSWORD: wecash2015!!!
+      WORDPRESS_DB_PASSWORD: 2015!!!
 
   mysql:
     image: mariadb
     volumes:
       - /data/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: wecash2015!!!
+      MYSQL_ROOT_PASSWORD: 2015!!!
 
 
 3.Build the project
